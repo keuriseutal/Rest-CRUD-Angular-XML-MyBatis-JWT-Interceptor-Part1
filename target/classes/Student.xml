@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Student">
+	<resultMap type="com.student.model.Student" id="student">
+		<result column="ID" property="id" />
+		<result column="FNAME" property="fname" />
+		<result column="LNAME" property="lname" />
+		<result column="SECTION" property="section" />
+	</resultMap>
+
+	<select id="findAllStudents" resultMap="student">
+		SELECT * FROM STUDENT
+	</select>
+ 
+	<!-- select by id/name/section -->
+	<select id="findBySearchValue" resultMap="student">
+	
+	  <bind name="id" value="'%' + _parameter + '%'" />
+	  <bind name="fname" value="'%' + _parameter + '%'" />
+	  <bind name="lname" value="'%' + _parameter + '%'" />
+	  <bind name="section" value="'%' + _parameter + '%'" />
+	
+		SELECT * FROM STUDENT WHERE ID LIKE #{id} OR FNAME LIKE #{fname} OR LNAME LIKE #{lname} OR SECTION LIKE #{section}
+	</select>
+
+
+	<!-- insert to student -->
+	<insert id="saveStudent">
+		INSERT INTO STUDENT (FNAME, LNAME, SECTION) VALUES
+		(#{fname}, #{lname}, #{section})
+	</insert>
+
+
+	<!-- update student -->
+	<update id="updateStudent">
+		UPDATE STUDENT SET FNAME = #{fname}, LNAME =
+		#{lname}, SECTION = #{section} WHERE ID = #{id}
+	</update>
+
+	<!-- delete student -->
+	<delete id="deleteStudentById">
+		DELETE FROM STUDENT WHERE ID = #{id}
+	</delete>
+
+	<!-- delete all records -->
+	<delete id="deleteAllStudents">
+		DELETE FROM STUDENT
+	</delete>
+
+</mapper>
