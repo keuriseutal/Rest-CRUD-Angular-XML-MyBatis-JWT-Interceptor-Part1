@@ -6,16 +6,36 @@ public class Student {
 	private String fname;
 	private String lname;
 	private String section;
+	private String uname;
+	private String pass;
+	private boolean isLoggedIn;
 	
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	public Student() {
 		id = 0;
 	}
 	
-	public Student(int id, String fname, String lname, String section) {
+	public Student(int id, String fname, String lname, String section, boolean isLoggedIn) {
 		this.id = id;
 		this.fname = fname;
 		this.lname = lname;
 		this.section = section;
+		this.isLoggedIn = false;
 	}
 
 	public int getId() {
@@ -42,4 +62,5 @@ public class Student {
 	public void setSection(String section) {
 		this.section = section;
 	}
+	
 }

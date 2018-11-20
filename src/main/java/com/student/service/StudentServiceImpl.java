@@ -3,6 +3,7 @@ package com.student.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.ibatis.session.SqlSession;
@@ -83,7 +84,17 @@ public class StudentServiceImpl extends SqlSessionDaoSupport implements StudentS
 		getSqlSession().delete("deleteAllStudents", students);
 	}
 
-	public boolean isStudentExist(Student student) {
-		return findById(student.getId()) != null;
+	public Student isStudentExist(Map<String, String> account) {
+		students = findAllStudents();
+
+		for (Student student : students) {
+
+			if (student.getUname().equals(account.get("uname"))  && student.getPass().equals(account.get("pass"))) {
+				return student;
+			}
+		}
+		return null;
+		
 	}
+
 }

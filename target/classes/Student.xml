@@ -7,6 +7,8 @@
 		<result column="FNAME" property="fname" />
 		<result column="LNAME" property="lname" />
 		<result column="SECTION" property="section" />
+		<result column="UNAME" property="uname" />
+		<result column="PASS" property="pass" />
 	</resultMap>
 
 	<select id="findAllStudents" resultMap="student">
@@ -24,11 +26,10 @@
 		SELECT * FROM STUDENT WHERE ID LIKE #{id} OR FNAME LIKE #{fname} OR LNAME LIKE #{lname} OR SECTION LIKE #{section}
 	</select>
 
-
 	<!-- insert to student -->
 	<insert id="saveStudent">
-		INSERT INTO STUDENT (FNAME, LNAME, SECTION) VALUES
-		(#{fname}, #{lname}, #{section})
+		INSERT INTO STUDENT (FNAME, LNAME, SECTION, UNAME, PASS) VALUES
+		(#{fname}, #{lname}, #{section}, #{uname}, #{pass})
 	</insert>
 
 

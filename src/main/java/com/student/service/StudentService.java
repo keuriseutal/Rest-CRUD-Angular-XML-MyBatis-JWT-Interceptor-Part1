@@ -2,6 +2,7 @@ package com.student.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.student.model.Student;
 
@@ -21,5 +22,6 @@ public interface StudentService {
      
     void deleteAllStudents();
     
-    public boolean isStudentExist(Student student);
+    public Student isStudentExist(Map<String, String> account);
+
 }
